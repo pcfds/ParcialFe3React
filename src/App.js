@@ -1,6 +1,12 @@
+import Historia from "./components/Historia"
+import Botones from "./components/Botones"
+
 function App() {
   return (
-    <div className="App">
+    <div className="layout">
+
+      <Botones/>
+
     </div>
   );
 }
