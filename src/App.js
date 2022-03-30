@@ -1,11 +1,12 @@
 import Historia from "./components/Historia"
-import Botones from "./components/Botones"
+import Diseño from "./components/Diseño"
 
 function App() {
   return (
     <div className="layout">
 
-      <Botones/>
+      
+      <Diseño/>
 
     </div>
   );
