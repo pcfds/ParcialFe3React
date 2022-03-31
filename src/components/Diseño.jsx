@@ -17,11 +17,14 @@ export default class Diseño extends Component {
   }
 
   componentDidMount() {
-    const name = prompt("TU NOMBRE, INTRUSO");
-
-    swal.fire(
-      `Hola ${name}, piensa bien antes de cada elección, tu camino comienza ahora`
-    );
+    swal.fire({
+      title: '¡Bienvenido Intruso!',
+      text: 'Comienza tu viaje, elige bien tu destino.',
+      imageUrl: 'https://scontent.faep9-3.fna.fbcdn.net/v/t31.18172-8/12901426_987769684648938_5883829831405943316_o.jpg?_nc_cat=108&ccb=1-5&_nc_sid=973b4a&_nc_ohc=8KMLod3_zg8AX-48xK4&_nc_ht=scontent.faep9-3.fna&oh=00_AT_fHrrLdeA-2t4Ewheuq2S1Wsw0ZIhwTemrog-SwCdQTg&oe=626BF534',
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: 'Custom image',
+    })
   }
 
   componentDidUpdate(estadoPrevio) {
