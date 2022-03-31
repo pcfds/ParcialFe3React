@@ -49,9 +49,9 @@ export default class Diseño extends Component {
             seleccionAnterior: "A"
         })
       
-    } else if (id === "B" && anterior !== "B"){
+    } else if (id === "B" && anterior !== "A"){
         this.setState({
-            contador : contador + 3,
+            contador : contador + 2,
         seleccionAnterior: "B"
         })
     }else if (id === "B" && anterior === "B"){
