@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import Historia from "./Historia"
+import Historia from "./Historia";
 import Botones from "./Botones";
 import Historial from "./Historial";
 import data from "./data.json";
-import swal from 'sweetalert2'
-
-
+import swal from "sweetalert2";
 
 const historial = [];
 
@@ -19,10 +17,11 @@ export default class Diseño extends Component {
   }
 
   componentDidMount() {
-   
     const name = prompt("TU NOMBRE, INTRUSO");
- 
-    swal.fire(`Hola ${name}, piensa bien antes de cada elección, tu camino comienza ahora`); 
+
+    swal.fire(
+      `Hola ${name}, piensa bien antes de cada elección, tu camino comienza ahora`
+    );
   }
 
   componentDidUpdate(estadoPrevio) {
@@ -37,58 +36,63 @@ export default class Diseño extends Component {
     const anterior = this.state.seleccionAnterior;
 
     if (contador >= 7) {
-      alert("La historia ha terminado, vuelve pronto.");
-    } else if (id === "A" && anterior !== "A"){
-        this.setState({
-            contador : contador + 1,
-        seleccionAnterior: "A"
-        })
-    }else if (id === "A" && anterior === "A"){
-        this.setState({
-            contador : contador +2,
-            seleccionAnterior: "A"
-        })
-      
-    } else if (id === "B" && anterior !== "A"){
-        this.setState({
-            contador : contador + 2,
-        seleccionAnterior: "B"
-        })
-    }else if (id === "B" && anterior === "B"){
-        this.setState({
-            contador : contador +2,
-            seleccionAnterior: "B"
-        });
-    } console.log(historial);
+      swal.fire({
+        title: 'Quieres repetir la historia?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Repetir",
+        denyButtonText: "Finalizar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+           window.location.reload();
+        } else if (result.isDenied) {
+          swal.fire('Se ha finalizado la historia', '', 'info')
+        }
+      })
+    } else if (id === "A" && anterior !== "A") {
+      this.setState({
+        contador: contador + 1,
+        seleccionAnterior: "A",
+      });
+    } else if (id === "A" && anterior === "A") {
+      this.setState({
+        contador: contador + 2,
+        seleccionAnterior: "A",
+      });
+    } else if (id === "B" && anterior ===  "A") {
+      this.setState({
+        contador: contador + 3,
+        seleccionAnterior: "B",
+      });
+    } else if (id === "B" && anterior !== "A") {
+      this.setState({
+        contador: contador + 2,
+        seleccionAnterior: "B",
+      });
+    }
+    console.log(historial);
     console.log(contador);
+  };
+
+  render() {
+    return (
+      <>
+        <Historia contador={[this.state.contador]} />
+        <Botones
+          handleClick={this.handleClick}
+          opcionA={data[this.state.contador].opciones.a}
+          opcionB={data[this.state.contador].opciones.b}
+        />
+        <Historial
+          seleccionAnterior={this.state.seleccionAnterior}
+          historial={historial.map(
+            (historial, i) => (
+              <li key={i}>{historial}</li>
+            ),
+            data[this.state.contador].id
+          )}
+        />
+      </>
+    );
+  }
 }
-  
-
-render() {
-  return (
-    <>
-   
-      <Historia contador={[this.state.contador]}/>
-      <Botones
-        handleClick={this.handleClick}
-        opcionA={data[this.state.contador].opciones.a}
-        opcionB={data[this.state.contador].opciones.b}
-      />
-      <Historial
-        seleccionAnterior={this.state.seleccionAnterior}
-        historial={historial.map(
-          (historial, i) => (
-            <li key={i}>{historial}</li>
-          ),
-          data[this.state.contador].id
-        )}
-      />
-    </>
-  );
-}
-}
-
-
-    
-
-
