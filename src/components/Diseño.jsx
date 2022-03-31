@@ -3,6 +3,9 @@ import Historia from "./Historia"
 import Botones from "./Botones";
 import Historial from "./Historial";
 import data from "./data.json";
+import swal from 'sweetalert2'
+
+
 
 const historial = [];
 
@@ -13,6 +16,13 @@ export default class Diseño extends Component {
       contador: 0,
       seleccionAnterior: "",
     };
+  }
+
+  componentDidMount() {
+   
+    const name = prompt("TU NOMBRE, INTRUSO");
+ 
+    new swal (`Hola ${name}, piensa bien antes de cada elección, tu camino comienza ahora`); 
   }
 
   componentDidUpdate(estadoPrevio) {
