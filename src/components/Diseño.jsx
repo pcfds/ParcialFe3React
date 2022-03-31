@@ -22,7 +22,7 @@ export default class Diseño extends Component {
    
     const name = prompt("TU NOMBRE, INTRUSO");
  
-    new swal (`Hola ${name}, piensa bien antes de cada elección, tu camino comienza ahora`); 
+    swal.fire(`Hola ${name}, piensa bien antes de cada elección, tu camino comienza ahora`); 
   }
 
   componentDidUpdate(estadoPrevio) {
@@ -49,7 +49,7 @@ export default class Diseño extends Component {
             seleccionAnterior: "A"
         })
       
-    } else if (id === "B" && anterior === "A"){
+    } else if (id === "B" && anterior !== "B"){
         this.setState({
             contador : contador + 3,
         seleccionAnterior: "B"
